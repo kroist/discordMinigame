@@ -37,11 +37,11 @@ async def on_message(message):
 
 @client.command()
 @commands.has_permissions(administrator=True)
-async def setBot(ctx, channelId, word):
-    channelId = channelId[2:-1]
-    print(channelId)
+async def setBot(ctx, channelName, word):
+    newchannel = await ctx.message.guild.create_text_channel(channelName)
+    print(newchannel.id)
     global channel_id, guessed_word, word_ptr
-    channel_id = int(channelId)
+    channel_id = newchannel.id
     print(word)
     guessed_word = word
     word_ptr = 0
